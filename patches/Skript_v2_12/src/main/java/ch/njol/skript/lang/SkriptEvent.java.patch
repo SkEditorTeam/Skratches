@@ -1,0 +1,17 @@
+--- a/src/main/java/ch/njol/skript/lang/SkriptEvent.java
++++ b/src/main/java/ch/njol/skript/lang/SkriptEvent.java
+@@ -40,12 +_,12 @@
+ 
+ 	public static final Priority PRIORITY = new Priority(600);
+ 
+-	private String expr;
++	public String expr;
+ 	private SectionNode source;
+ 	protected @Nullable EventPriority eventPriority;
+ 	protected @Nullable ListeningBehavior listeningBehavior;
+ 	protected boolean supportsListeningBehavior;
+-	private SkriptEventInfo<?> skriptEventInfo;
++	public SkriptEventInfo<?> skriptEventInfo;
+ 
+ 	/**
+ 	 * The Trigger containing this SkriptEvent's code.

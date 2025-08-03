@@ -1,0 +1,32 @@
+--- a/src/main/java/ch/njol/skript/command/ScriptCommand.java
++++ b/src/main/java/ch/njol/skript/command/ScriptCommand.java
+@@ -76,9 +_,9 @@
+ 	private final String label;
+ 	private final List<String> aliases;
+ 	private List<String> activeAliases;
+-	private String permission;
++	public String permission;
+ 	private final VariableString permissionMessage;
+-	private final String description;
++	public final String description;
+ 	private final String prefix;
+ 	@Nullable
+ 	private final Timespan cooldown;
+@@ -86,7 +_,7 @@
+ 	private final String cooldownBypass;
+ 	@Nullable
+ 	private final Expression<String> cooldownStorage;
+-	final CommandUsage usage;
++	public final CommandUsage usage;
+ 
+ 	private final Trigger trigger;
+ 
+@@ -349,7 +_,7 @@
+ 			Skript.info("# /" + name + " " + rest);
+ 		final long startTrigger = System.nanoTime();
+ 
+-		if (!trigger.execute(event))
++		if (!trigger.forceExecute(event))
+ 			sender.sendMessage(Commands.m_internal_error.toString());
+ 
+ 		if (Skript.log(Verbosity.VERY_HIGH))

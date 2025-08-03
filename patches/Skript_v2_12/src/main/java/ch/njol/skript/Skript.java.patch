@@ -1,0 +1,108 @@
+--- a/src/main/java/ch/njol/skript/Skript.java
++++ b/src/main/java/ch/njol/skript/Skript.java
+@@ -205,6 +_,8 @@
+ 	private SkriptUpdater updater;
+ 
+ 	public Skript() throws IllegalStateException {
++		if (!Bukkit.getName().equals("SkAnalyzer"))
++			throw new RuntimeException("You can only use skratched Skript for SkAnalyzer");
+ 		if (instance != null)
+ 			throw new IllegalStateException("Cannot create multiple instances of Skript!");
+ 		instance = this;
+@@ -374,9 +_,11 @@
+ 	 * @return The folder containing all Scripts.
+ 	 */
+ 	public File getScriptsFolder() {
++		/*
+ 		if (!scriptsFolder.isDirectory())
+ 			//noinspection ResultOfMethodCallIgnored
+ 			scriptsFolder.mkdirs();
++		 */
+ 		return scriptsFolder;
+ 	}
+ 
+@@ -402,36 +_,43 @@
+ 
+ 		// Start the updater
+ 		// Note: if config prohibits update checks, it will NOT do network connections
++		/*
+ 		try {
+ 			this.updater = new SkriptUpdater();
+ 		} catch (Exception e) {
+ 			Skript.exception(e, "Update checker could not be initialized.");
+ 		}
++		 */
+ 
+ 		if (!getDataFolder().isDirectory())
+ 			getDataFolder().mkdirs();
+ 
+ 		scriptsFolder = new File(getDataFolder(), SCRIPTSFOLDER);
++		scriptsFolder.mkdirs();
+ 		File config = new File(getDataFolder(), "config.sk");
+ 		File features = new File(getDataFolder(), "features.sk");
+ 		File lang = new File(getDataFolder(), "lang");
+ 		File aliasesFolder = new File(getDataFolder(), "aliases");
+-		if (!scriptsFolder.isDirectory() || !config.exists() || !features.exists() || !lang.exists() || !aliasesFolder.exists()) {
++		if (/*!scriptsFolder.isDirectory() ||*/ !config.exists() || !features.exists() || /*!lang.exists() ||*/ !aliasesFolder.exists()) {
+ 			ZipFile f = null;
+ 			try {
+ 				boolean populateExamples = false;
++				/*
+ 				if (!scriptsFolder.isDirectory()) {
+ 					if (!scriptsFolder.mkdirs())
+ 						throw new IOException("Could not create the directory " + scriptsFolder);
+ 					populateExamples = true;
+ 				}
++				 */
+ 
+ 				boolean populateLanguageFiles = false;
++				/*
+ 				if (!lang.isDirectory()) {
+ 					if (!lang.mkdirs())
+ 						throw new IOException("Could not create the directory " + lang);
+ 					populateLanguageFiles = true;
+ 				}
++				 */
+ 
+ 				if (!aliasesFolder.isDirectory()) {
+ 					if (!aliasesFolder.mkdirs())
+@@ -608,6 +_,7 @@
+ 				assert Bukkit.getWorlds().get(0).getFullTime() == tick;
+ 
+ 				// Load hooks from Skript jar
++				/*
+ 				try {
+ 					try (JarFile jar = new JarFile(getFile())) {
+ 						for (JarEntry e : new EnumerationIterable<>(jar.entries())) {
+@@ -633,6 +_,7 @@
+ 					error("Error while loading plugin hooks" + (e.getLocalizedMessage() == null ? "" : ": " + e.getLocalizedMessage()));
+ 					Skript.exception(e);
+ 				}
++				 */
+ 				finishedLoadingHooks = true;
+ 
+ 				try {
+@@ -656,6 +_,7 @@
+ 
+ 				stopAcceptingRegistrations();
+ 
++				/*
+ 				Documentation.generate(); // TODO move to test classes?
+ 
+ 				// Variable loading
+@@ -719,6 +_,7 @@
+ 				/*
+ 				 * Start loading scripts
+ 				 */
++				/*
+ 				Date start = new Date();
+ 				CountingLogHandler logHandler = new CountingLogHandler(Level.SEVERE);
+ 
+@@ -767,6 +_,7 @@
+ 						}
+ 					});
+ 
++				 */
+ 			}
+ 		});
+ 

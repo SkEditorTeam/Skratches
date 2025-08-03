@@ -1,0 +1,11 @@
+--- a/src/main/java/ch/njol/skript/structures/StructCommand.java
++++ b/src/main/java/ch/njol/skript/structures/StructCommand.java
+@@ -133,7 +_,7 @@
+ 	private EntryContainer entryContainer;
+ 
+ 	@Nullable
+-	private ScriptCommand scriptCommand;
++	public ScriptCommand scriptCommand;
+ 
+ 	@Override
+ 	public boolean init(Literal<?>[] args, int matchedPattern, ParseResult parseResult, @Nullable EntryContainer entryContainer) {

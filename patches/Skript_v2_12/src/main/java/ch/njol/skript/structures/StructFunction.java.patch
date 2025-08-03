@@ -1,0 +1,11 @@
+--- a/src/main/java/ch/njol/skript/structures/StructFunction.java
++++ b/src/main/java/ch/njol/skript/structures/StructFunction.java
+@@ -56,7 +_,7 @@
+ 	@SuppressWarnings("NotNullFieldNotInitialized")
+ 	private SectionNode source;
+ 	@Nullable
+-	private Signature<?> signature;
++	public Signature<?> signature;
+ 	private boolean local;
+ 
+ 	@Override
