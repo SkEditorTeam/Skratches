@@ -1,10 +1,3 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-    }
-}
-
 rootProject.name = "Skratches"
 
 listOf(
