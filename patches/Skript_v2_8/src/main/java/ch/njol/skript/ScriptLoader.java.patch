@@ -1,8 +1,8 @@
 --- a/src/main/java/ch/njol/skript/ScriptLoader.java
 +++ b/src/main/java/ch/njol/skript/ScriptLoader.java
-@@ -781,8 +_,7 @@
+@@ -767,8 +_,7 @@
  		}
- 
+ 		
  		try {
 -			String name = Skript.getInstance().getDataFolder().toPath().toAbsolutePath()
 -					.resolve(Skript.SCRIPTSFOLDER).relativize(file.toPath().toAbsolutePath()).toString();
@@ -10,9 +10,9 @@
  			return loadStructure(Files.newInputStream(file.toPath()), name);
  		} catch (IOException e) {
  			Skript.error("Could not load " + file.getName() + ": " + ExceptionUtils.toString(e));
-@@ -848,7 +_,10 @@
- 					.forEach(event -> event.onUnload(parser, script));
- 
+@@ -827,7 +_,10 @@
+ 		for (Script script : scripts) {
+ 			parser.setActive(script);
  			for (Structure structure : script.getStructures())
 +				try {
  				structure.unload();

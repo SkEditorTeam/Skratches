@@ -1,0 +1,14 @@
+--- a/src/main/java/ch/njol/skript/command/Commands.java
++++ b/src/main/java/ch/njol/skript/command/Commands.java
+@@ -102,6 +_,11 @@
+ 
+ 	@SuppressWarnings("unchecked")
+ 	private static void init() {
++		if (true) {
++			commandMap = (SimpleCommandMap) Bukkit.getCommandMap();
++			cmKnownCommands = commandMap.getKnownCommands();
++			return;
++		}
+ 		try {
+ 			if (Bukkit.getPluginManager() instanceof SimplePluginManager) {
+ 				Field commandMapField = SimplePluginManager.class.getDeclaredField("commandMap");

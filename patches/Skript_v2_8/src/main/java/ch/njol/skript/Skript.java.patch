@@ -2,27 +2,27 @@
 +++ b/src/main/java/ch/njol/skript/Skript.java
 @@ -205,6 +_,8 @@
  	private SkriptUpdater updater;
- 
+ 	
  	public Skript() throws IllegalStateException {
 +		if (!Bukkit.getName().equals("SkAnalyzer"))
 +			throw new RuntimeException("You can only use skratched Skript for SkAnalyzer");
  		if (instance != null)
  			throw new IllegalStateException("Cannot create multiple instances of Skript!");
  		instance = this;
-@@ -402,6 +_,7 @@
- 
+@@ -387,6 +_,7 @@
+ 		
  		// Start the updater
  		// Note: if config prohibits update checks, it will NOT do network connections
 +		if (false)
  		try {
  			this.updater = new SkriptUpdater();
  		} catch (Exception e) {
-@@ -416,21 +_,19 @@
+@@ -400,21 +_,19 @@
+ 		File config = new File(getDataFolder(), "config.sk");
  		File features = new File(getDataFolder(), "features.sk");
  		File lang = new File(getDataFolder(), "lang");
- 		File aliasesFolder = new File(getDataFolder(), "aliases");
--		if (!scriptsFolder.isDirectory() || !config.exists() || !features.exists() || !lang.exists() || !aliasesFolder.exists()) {
-+		if (!config.exists() || !features.exists() || !aliasesFolder.exists()) {
+-		if (!scriptsFolder.isDirectory() || !config.exists() || !features.exists() || !lang.exists()) {
++		if (!config.exists() || !features.exists()) {
  			ZipFile f = null;
  			try {
  				boolean populateExamples = false;
@@ -39,33 +39,33 @@
 -					populateLanguageFiles = true;
  				}
  
- 				if (!aliasesFolder.isDirectory()) {
-@@ -608,6 +_,7 @@
+ 				f = new ZipFile(getFile());
+@@ -562,6 +_,7 @@
  				assert Bukkit.getWorlds().get(0).getFullTime() == tick;
- 
+ 				
  				// Load hooks from Skript jar
 +				if (false)
  				try {
  					try (JarFile jar = new JarFile(getFile())) {
  						for (JarEntry e : new EnumerationIterable<>(jar.entries())) {
-@@ -656,6 +_,7 @@
- 
+@@ -605,6 +_,7 @@
  				stopAcceptingRegistrations();
- 
+ 				
+ 				
 +				if (false) {
  				Documentation.generate(); // TODO move to test classes?
  
  				// Variable loading
-@@ -767,6 +_,7 @@
+@@ -876,6 +_,7 @@
  						}
  					});
- 
+ 				
 +				}
  			}
  		});
- 
-@@ -779,6 +_,12 @@
- 
+ 		
+@@ -908,6 +_,12 @@
+ 		
  		// Tell Timings that we are here!
  		SkriptTimings.setSkript(this);
 +
@@ -75,5 +75,5 @@
 +			throw new RuntimeException("Failed to initialize Skratches", e);
 +		}
  	}
- 
- 	private static class ServerReloadListener implements Listener {
+ 	
+ 	/**

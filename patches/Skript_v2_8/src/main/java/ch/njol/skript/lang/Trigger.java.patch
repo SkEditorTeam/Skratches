@@ -1,0 +1,13 @@
+--- a/src/main/java/ch/njol/skript/lang/Trigger.java
++++ b/src/main/java/ch/njol/skript/lang/Trigger.java
+@@ -49,6 +_,10 @@
+ 	 * @return false if an exception occurred.
+ 	 */
+ 	public boolean execute(Event event) {
++		return true;
++	}
++
++	public boolean forceExecute(Event event) {
+ 		boolean success = TriggerItem.walk(this, event);
+ 
+ 		// Clear local variables

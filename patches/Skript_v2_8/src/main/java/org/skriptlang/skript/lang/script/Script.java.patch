@@ -1,0 +1,11 @@
+--- a/src/main/java/org/skriptlang/skript/lang/script/Script.java
++++ b/src/main/java/org/skriptlang/skript/lang/script/Script.java
+@@ -45,6 +_,8 @@
+ 
+ 	private final List<Structure> structures;
+ 
++	public final Set<String> addons = new HashSet<>();
++
+ 	/**
+ 	 * Creates a new Script to be used across the API.
+ 	 * Only one Script should be created per Config. A loaded Script may be obtained through {@link ch.njol.skript.ScriptLoader}.
