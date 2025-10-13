@@ -4,7 +4,7 @@ import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
 import ch.njol.skript.hooks.VaultHook;
 import ch.njol.skript.hooks.regions.RegionsPlugin;
-import me.glicz.skanalyzer.bridge.MockSkriptBridge;
+import me.glicz.skanalyzer.bridge.SkriptBridge;
 import me.glicz.skanalyzer.config.Config;
 import me.glicz.skanalyzer.result.AnalyzeResult;
 import me.glicz.skanalyzer.result.AnalyzeResults;
@@ -24,7 +24,10 @@ import static me.glicz.skratches.util.AnalyzeUtils.toScriptStructure;
 import static me.glicz.skratches.util.ScriptUtils.SCRIPT_EXTENSION;
 import static me.glicz.skratches.util.SetUtils.transformSet;
 
-public final class SkriptBridgeImpl extends MockSkriptBridge {
+public final class SkriptBridgeImpl implements SkriptBridge {
+    SkriptBridgeImpl() {
+    }
+
     @Override
     public void forceLoadHooks(Config.ForcedHooks forcedHooks) throws IOException {
         if (forcedHooks.vault()) {
