@@ -1,6 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import me.glicz.accesswiden.AccessWidenPlugin
 import me.glicz.accesswiden.AccessWidenExtension
+import me.glicz.accesswiden.AccessWidenPlugin
 
 plugins {
     id("me.glicz.eyepatch") version "1.0.1"
@@ -22,21 +22,22 @@ listOf(
     findProject(":$name")?.run {
         apply<AccessWidenPlugin>()
 
-        val accessWiden by configurations.getting
         val accessWidened by configurations.creating
         val alsoShade by configurations.creating
 
         afterEvaluate {
             dependencies {
-                accessWiden(files(tasks.named<Jar>("jar")))
+                accessWidened(accessWiden(tasks.named<Jar>("jar")))
 
                 alsoShade(project(":common"))
             }
 
             tasks.register<ShadowJar>("skratchedJar") {
-                dependsOn(accessWiden)
+                dependsOn(accessWidened)
 
-                configurations = listOf(accessWidened, alsoShade)
+                configurations = listOf(alsoShade)
+
+                from(accessWidened.elements.map { files -> files.map { zipTree(it) } })
 
                 dependencies {
                     include(project(":common"))
@@ -48,8 +49,6 @@ listOf(
 
         extensions.configure<AccessWidenExtension> {
             accessWideners.from(rootDir.resolve("build-data/skript.accesswidener"))
-
-            outputConfigurations = setOf(accessWidened)
         }
     }
 }
