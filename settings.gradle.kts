@@ -1,12 +1,17 @@
+import org.gradle.kotlin.dsl.provideDelegate
+
 rootProject.name = "Skratches"
 
 include("common")
 
-listOf(
-    "2_8",
-    "2_12"
-).forEach {
-    val path = "Skript_v$it"
+gradle.extra["skriptVersions"] = listOf(
+    "2.8", "2.12"
+)
+
+val skriptVersions: List<String> by gradle.extra
+
+skriptVersions.forEach { version ->
+    val path = "Skript_v${version.replace('.', '_')}"
 
     if (file(path).exists()) {
         include(":$path")

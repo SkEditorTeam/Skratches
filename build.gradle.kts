@@ -8,11 +8,10 @@ plugins {
     id("com.gradleup.shadow") version "9.2.0" apply false
 }
 
-listOf(
-    "2_8",
-    "2_12"
-).forEach { version ->
-    val name = "Skript_v$version"
+val skriptVersions: List<String> by gradle.extra
+
+skriptVersions.forEach { version ->
+    val name = "Skript_v${version.replace('.', '_')}"
 
     eyepatch.repositories.create(name) {
         submodule = "work/$name"
@@ -43,7 +42,7 @@ listOf(
                     include(project(":common"))
                 }
 
-                archiveFileName = "Skript-v${version.replace('_', '.')}-skratched.jar"
+                archiveFileName = "Skript-v$version-skratched.jar"
             }
         }
 
