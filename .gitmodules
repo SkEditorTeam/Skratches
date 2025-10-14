@@ -7,6 +7,9 @@
 [submodule "work/Skript_v2_10"]
 	path = work/Skript_v2_10
 	url = https://github.com/SkriptLang/Skript
+[submodule "work/Skript_v2_11"]
+	path = work/Skript_v2_11
+	url = https://github.com/SkriptLang/Skript
 [submodule "work/Skript_v2_12"]
 	path = work/Skript_v2_12
 	url = https://github.com/SkriptLang/Skript

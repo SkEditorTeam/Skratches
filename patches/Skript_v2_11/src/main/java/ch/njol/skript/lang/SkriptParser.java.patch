@@ -1,0 +1,13 @@
+--- a/src/main/java/ch/njol/skript/lang/SkriptParser.java
++++ b/src/main/java/ch/njol/skript/lang/SkriptParser.java
+@@ -252,6 +_,10 @@
+ 							boolean success = element.init(parseResult.exprs, patternIndex, getParser().getHasDelayBefore(), parseResult);
+ 							if (success) {
+ 								log.printLog();
++								try {
++									getParser().getCurrentScript().addons.add(JavaPlugin.getProvidingPlugin(info.getElementClass()).getName());
++								} catch (Throwable ignored) {
++								}
+ 								return element;
+ 							}
+ 						}
