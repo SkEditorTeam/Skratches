@@ -49,5 +49,10 @@ skriptVersions.forEach { version ->
         extensions.configure<AccessWidenExtension> {
             accessWideners.from(rootDir.resolve("build-data/skript.accesswidener"))
         }
+
+        tasks.withType<JavaCompile> {
+            options.isFork = true
+            options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal"))
+        }
     }
 }
