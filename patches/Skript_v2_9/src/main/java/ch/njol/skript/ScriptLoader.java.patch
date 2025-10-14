@@ -1,6 +1,6 @@
 --- a/src/main/java/ch/njol/skript/ScriptLoader.java
 +++ b/src/main/java/ch/njol/skript/ScriptLoader.java
-@@ -767,8 +_,7 @@
+@@ -789,8 +_,7 @@
  		}
  		
  		try {
@@ -10,7 +10,7 @@
  			return loadStructure(Files.newInputStream(file.toPath()), name);
  		} catch (IOException e) {
  			Skript.error("Could not load " + file.getName() + ": " + ExceptionUtils.toString(e));
-@@ -827,7 +_,10 @@
+@@ -849,7 +_,10 @@
  		for (Script script : scripts) {
  			parser.setActive(script);
  			for (Structure structure : script.getStructures())

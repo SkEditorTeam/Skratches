@@ -10,7 +10,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly(project(":Skript_v2_8", "accessWidened"))
+    val skript = ":Skript_v2_9"
+    if (findProject(skript) != null) {
+        compileOnly(project(skript, "accessWidened"))
+    }
+
     compileOnly("me.glicz:skanalyzer-core:2.0.0-SNAPSHOT")
 }
 
