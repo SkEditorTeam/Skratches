@@ -3,7 +3,7 @@ import me.glicz.accesswiden.AccessWidenExtension
 import me.glicz.accesswiden.AccessWidenPlugin
 
 plugins {
-    id("me.glicz.eyepatch") version "1.0.1"
+    id("me.glicz.eyepatch") version "1.0.2"
     id("me.glicz.access-widen") version "2.0.0" apply false
     id("com.gradleup.shadow") version "9.2.0" apply false
 }
