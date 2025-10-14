@@ -41,7 +41,6 @@ public final class SkriptBridgeImpl implements SkriptBridge {
         }
     }
 
-    // TODO should we throw exceptions directly?
     @Override
     public CompletableFuture<AnalyzeResults> loadScript(String path) {
         File file = new File(path);

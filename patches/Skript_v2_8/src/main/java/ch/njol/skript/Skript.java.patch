@@ -17,15 +17,7 @@
  		try {
  			this.updater = new SkriptUpdater();
  		} catch (Exception e) {
-@@ -400,21 +_,19 @@
- 		File config = new File(getDataFolder(), "config.sk");
- 		File features = new File(getDataFolder(), "features.sk");
- 		File lang = new File(getDataFolder(), "lang");
--		if (!scriptsFolder.isDirectory() || !config.exists() || !features.exists() || !lang.exists()) {
-+		if (!config.exists() || !features.exists()) {
- 			ZipFile f = null;
- 			try {
- 				boolean populateExamples = false;
+@@ -407,7 +_,6 @@
  				if (!scriptsFolder.isDirectory()) {
  					if (!scriptsFolder.mkdirs())
  						throw new IOException("Could not create the directory " + scriptsFolder);
@@ -33,13 +25,6 @@
  				}
  
  				boolean populateLanguageFiles = false;
- 				if (!lang.isDirectory()) {
- 					if (!lang.mkdirs())
- 						throw new IOException("Could not create the directory " + lang);
--					populateLanguageFiles = true;
- 				}
- 
- 				f = new ZipFile(getFile());
 @@ -562,6 +_,7 @@
  				assert Bukkit.getWorlds().get(0).getFullTime() == tick;
  				

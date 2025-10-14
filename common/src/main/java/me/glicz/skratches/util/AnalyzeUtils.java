@@ -59,6 +59,7 @@ public final class AnalyzeUtils {
             }
         });
 
+        //noinspection UnstableApiUsage
         StructOptions.OptionsData optionsData = script.getData(StructOptions.OptionsData.class);
         if (optionsData != null) {
             options.putAll(optionsData.getOptions());

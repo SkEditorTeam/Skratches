@@ -1,6 +1,6 @@
 --- a/src/main/java/ch/njol/skript/lang/SkriptParser.java
 +++ b/src/main/java/ch/njol/skript/lang/SkriptParser.java
-@@ -277,6 +_,10 @@
+@@ -280,6 +_,10 @@
  								break;
  						}
  						log.printLog();
