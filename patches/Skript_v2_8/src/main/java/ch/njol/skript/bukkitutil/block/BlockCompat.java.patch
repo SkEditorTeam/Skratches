@@ -1,0 +1,12 @@
+--- a/src/main/java/ch/njol/skript/bukkitutil/block/BlockCompat.java
++++ b/src/main/java/ch/njol/skript/bukkitutil/block/BlockCompat.java
+@@ -66,6 +_,9 @@
+ 	}
+ 
+ 	@Nullable
++	BlockValues getBlockValues(Material material);
++
++	@Nullable
+ 	BlockValues getBlockValues(BlockData blockData);
+ 	
+ 	/**

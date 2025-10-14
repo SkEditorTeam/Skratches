@@ -76,7 +76,7 @@ public final class AnalyzeUtils {
         String permission = emptyToNull(scriptCommand.permission);
         String description = emptyToNull(scriptCommand.description);
         String prefix = scriptCommand.getPrefix();
-        String usage = emptyToNull(scriptCommand.usage.getUsage());
+        String usage = emptyToNull(scriptCommand.skratches$getUsage());
 
         List<String> arguments = scriptCommand.getArguments().stream()
                 .map(argument -> argument.type.getCodeName())

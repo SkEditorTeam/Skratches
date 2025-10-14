@@ -3,7 +3,6 @@ accessWidener v2 named
 accessible field ch/njol/skript/command/Argument type Lch/njol/skript/classes/ClassInfo;
 accessible field ch/njol/skript/command/ScriptCommand description Ljava/lang/String;
 accessible field ch/njol/skript/command/ScriptCommand permission Ljava/lang/String;
-accessible field ch/njol/skript/command/ScriptCommand usage Lch/njol/skript/command/CommandUsage;
 accessible field ch/njol/skript/lang/SkriptEvent expr Ljava/lang/String;
 accessible field ch/njol/skript/lang/SkriptEvent skriptEventInfo Lch/njol/skript/lang/SkriptEventInfo;
 accessible field ch/njol/skript/structures/StructCommand scriptCommand Lch/njol/skript/command/ScriptCommand;

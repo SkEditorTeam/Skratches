@@ -1,0 +1,82 @@
+--- a/src/main/java/ch/njol/skript/aliases/ItemType.java
++++ b/src/main/java/ch/njol/skript/aliases/ItemType.java
+@@ -68,6 +_,7 @@
+ import java.util.Random;
+ import java.util.RandomAccess;
+ import java.util.Set;
++import java.util.stream.Collectors;
+ 
+ @ContainerType(ItemStack.class)
+ public class ItemType implements Unit, Iterable<ItemData>, Container<ItemStack>, YggdrasilExtendedSerializable {
+@@ -315,7 +_,7 @@
+ 
+ 	public boolean isOfType(Material id) {
+ 		// TODO avoid object creation
+-		return isOfType(new ItemData(id, null));
++		return isOfType(new ItemData(id, (String) null));
+ 	}
+ 
+ 	/**
+@@ -343,7 +_,7 @@
+ 	 */
+ 	public boolean hasItem() {
+ 		for (ItemData d : types) {
+-			if (!d.type.isBlock())
++			if (d.type.isItem())
+ 				return true;
+ 		}
+ 		return false;
+@@ -487,9 +_,13 @@
+ 
+ 			@Override
+ 			public ItemStack next() {
++				ItemStack is = null;
++				while (is == null) {
+ 				if (!hasNext())
+ 					throw new NoSuchElementException();
+-				ItemStack is = iter.next().getStack().clone();
++					is = iter.next().getStack();
++				}
++				is = is.clone();
+ 				is.setAmount(getAmount());
+ 				return is;
+ 			}
+@@ -588,10 +_,18 @@
+ 	 * @see #removeFrom(ItemStack)
+ 	 * @see #removeFrom(List...)
+ 	 */
++	@Nullable
+ 	public ItemStack getRandom() {
+-		int numItems = types.size();
++		List<ItemData> datas = types.stream()
++				.filter(data -> data.stack != null)
++				.collect(Collectors.toList());
++		if (datas.isEmpty())
++			return null;
++		int numItems = datas.size();
+ 		int index = random.nextInt(numItems);
+-		ItemStack is = types.get(index).getStack().clone();
++		ItemStack is = datas.get(index).getStack();
++		assert is != null; // verified above
++		is = is.clone();
+ 		is.setAmount(getAmount());
+ 		return is;
+ 	}
+@@ -869,6 +_,8 @@
+ 	 */
+ 	public void addTo(final List<ItemStack> list) {
+ 		if (!isAll()) {
++			ItemStack random = getItem().getRandom();
++			if (random != null)
+ 			list.add(getItem().getRandom());
+ 			return;
+ 		}
+@@ -936,6 +_,8 @@
+ 
+ 	public boolean addTo(final ItemStack[] buf) {
+ 		if (!isAll()) {
++			ItemStack random = getItem().getRandom();
++			if (random != null)
+ 			return addTo(getItem().getRandom(), buf);
+ 		}
+ 		boolean ok = true;

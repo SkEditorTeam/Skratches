@@ -1,5 +1,13 @@
 --- a/src/main/java/ch/njol/skript/command/ScriptCommand.java
 +++ b/src/main/java/ch/njol/skript/command/ScriptCommand.java
+@@ -87,6 +_,7 @@
+ 	@Nullable
+ 	private final Expression<String> cooldownStorage;
+ 	final CommandUsage usage;
++	public String skratches$getUsage() {return usage.getUsage();}
+ 
+ 	private final Trigger trigger;
+ 
 @@ -349,7 +_,7 @@
  			Skript.info("# /" + name + " " + rest);
  		final long startTrigger = System.nanoTime();

@@ -1,0 +1,10 @@
+--- a/src/main/java/ch/njol/skript/classes/data/BukkitClasses.java
++++ b/src/main/java/ch/njol/skript/classes/data/BukkitClasses.java
+@@ -930,6 +_,7 @@
+ 				.since("1.0")
+ 				.after("number")
+ 				.supplier(() -> Arrays.stream(Material.values())
++					.filter(Material::isItem)
+ 					.map(ItemStack::new)
+ 					.iterator())
+ 				.parser(new Parser<ItemStack>() {

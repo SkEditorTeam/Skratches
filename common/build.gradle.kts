@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    val skript = ":Skript_v2_9"
+    val skript = ":Skript_v2_8"
     if (findProject(skript) != null) {
         compileOnly(project(skript, "accessWidened"))
     }

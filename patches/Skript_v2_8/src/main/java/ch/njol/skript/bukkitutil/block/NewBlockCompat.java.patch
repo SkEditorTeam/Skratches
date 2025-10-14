@@ -1,0 +1,16 @@
+--- a/src/main/java/ch/njol/skript/bukkitutil/block/NewBlockCompat.java
++++ b/src/main/java/ch/njol/skript/bukkitutil/block/NewBlockCompat.java
+@@ -336,6 +_,13 @@
+ 		return getBlockValues(blockState.getBlockData());
+ 	}
+ 
++	@Override
++	public @Nullable BlockValues getBlockValues(Material material) {
++		if (material.isBlock())
++			return new NewBlockValues(material, Bukkit.createBlockData(material), false);
++		return null;
++	}
++
+ 	@Nullable
+ 	@Override
+ 	public BlockValues getBlockValues(BlockData blockData) {

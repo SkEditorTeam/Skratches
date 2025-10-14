@@ -1,0 +1,85 @@
+--- a/src/main/java/ch/njol/skript/util/EnumUtils.java
++++ b/src/main/java/ch/njol/skript/util/EnumUtils.java
+@@ -33,7 +_,48 @@
+  * @param <E> Generic representing the Enum.
+  * @see ch.njol.skript.classes.EnumClassInfo
+  */
+-public final class EnumUtils<E extends Enum<E>> {
++public final class EnumUtils<E> {
++	private static final java.lang.invoke.MethodHandle NAME_HANDLE, ORDINAL_HANDLE;
++
++	static {
++		try {
++			Class<?> oldEnum = Class.forName("org.bukkit.util.OldEnum");
++
++			NAME_HANDLE = java.lang.invoke.MethodHandles.publicLookup()
++				.findVirtual(oldEnum, "name", java.lang.invoke.MethodType.methodType(String.class));
++
++			ORDINAL_HANDLE = java.lang.invoke.MethodHandles.publicLookup()
++				.findVirtual(oldEnum, "ordinal", java.lang.invoke.MethodType.methodType(int.class));
++		} catch (ReflectiveOperationException e) {
++			throw new RuntimeException(e);
++		}
++	}
++
++	String nameOf(E element) {
++		if (element instanceof Enum<?>) {
++			return ((Enum<?>) element).name();
++		}
++
++		try {
++			//noinspection JavaLangInvokeHandleSignature
++			return (String) NAME_HANDLE.invoke(element);
++		} catch (Throwable e) {
++			throw new RuntimeException(e);
++		}
++	}
++
++	int ordinalOf(E element) {
++		if (element instanceof Enum<?>) {
++			return ((Enum<?>) element).ordinal();
++		}
++
++		try {
++			//noinspection JavaLangInvokeHandleSignature
++			return (int) ORDINAL_HANDLE.invoke(element);
++		} catch (Throwable e) {
++			throw new RuntimeException(e);
++		}
++	}
+ 	
+ 	private final Class<E> enumClass;
+ 	private final String languageNode;
+@@ -59,11 +_,19 @@
+ 	 */
+ 	void refresh() {
+ 		E[] constants = enumClass.getEnumConstants();
++		if (constants == null) {
++			try {
++				//noinspection unchecked
++				constants = (E[]) enumClass.getMethod("values").invoke(null);
++			} catch (ReflectiveOperationException e) {
++				throw new RuntimeException(e);
++			}
++		}
+ 		names = new String[constants.length];
+ 		parseMap.clear();
+ 		for (E constant : constants) {
+-			String key = languageNode + "." + constant.name();
+-			int ordinal = constant.ordinal();
++			String key = languageNode + "." + nameOf(constant);
++			int ordinal = ordinalOf(constant);
+ 
+ 			String[] options = Language.getList(key);
+ 			for (String option : options) {
+@@ -107,8 +_,8 @@
+ 	 * @return A string representation of the enumerator.
+ 	 */
+ 	public String toString(E enumerator, int flags) {
+-		String s = names[enumerator.ordinal()];
+-		return s != null ? s : enumerator.name();
++		String s = names[ordinalOf(enumerator)];
++		return s != null ? s : nameOf(enumerator);
+ 	}
+ 
+ 	/**
