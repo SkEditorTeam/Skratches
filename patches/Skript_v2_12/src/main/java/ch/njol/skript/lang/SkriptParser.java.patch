@@ -5,7 +5,7 @@
  						}
  						log.printLog();
 +						try {
-+							getParser().getCurrentScript().addons.add(info.origin().name());
++							getParser().getCurrentScript().addons.add(JavaPlugin.getProvidingPlugin(info.type()).getName());
 +						} catch (Throwable ignored) {
 +						}
  						if (doSimplification && element instanceof Simplifiable<?> simplifiable)
