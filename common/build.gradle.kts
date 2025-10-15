@@ -1,8 +1,14 @@
+plugins {
+    java
+}
+
 dependencies {
     val skript = ":Skript_v2_8"
     if (findProject(skript) != null) {
         compileOnly(project(skript, "accessWidened"))
     }
+
+    compileOnly(libs.skanalyzer.core)
 }
 
 java {

@@ -3,9 +3,17 @@ import me.glicz.accesswiden.AccessWidenExtension
 import me.glicz.accesswiden.AccessWidenPlugin
 
 plugins {
-    id("me.glicz.eyepatch") version "1.0.2"
-    id("me.glicz.access-widen") version "2.0.0" apply false
-    id("com.gradleup.shadow") version "9.2.0" apply false
+    alias(libs.plugins.eyepatch)
+    alias(libs.plugins.accessWiden) apply false
+    alias(libs.plugins.shadow) apply false
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+        maven("https://repo.roxymc.net/snapshots")
+        maven("https://repo.papermc.io/repository/maven-public/")
+    }
 }
 
 val skriptVersions: List<String> by gradle.extra
@@ -29,6 +37,10 @@ skriptVersions.forEach { version ->
                 accessWidened(accessWiden(tasks.named<Jar>("jar")))
 
                 alsoShade(project(":common"))
+
+                "compileOnly"(libs.skanalyzer.core) {
+                    exclude("io.papermc.paper", "paper-api")
+                }
             }
 
             tasks.register<ShadowJar>("skratchedJar") {
@@ -53,22 +65,6 @@ skriptVersions.forEach { version ->
         tasks.withType<JavaCompile> {
             options.isFork = true
             options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal"))
-        }
-    }
-}
-
-subprojects {
-    apply<JavaPlugin>()
-
-    repositories {
-        mavenCentral()
-        maven("https://repo.roxymc.net/snapshots")
-        maven("https://repo.papermc.io/repository/maven-public/")
-    }
-
-    dependencies {
-        "compileOnly"("me.glicz:skanalyzer-core:2.0.0-SNAPSHOT") {
-            isTransitive = !project.name.startsWith("Skript")
         }
     }
 }
