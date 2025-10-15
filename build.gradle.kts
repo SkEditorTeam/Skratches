@@ -56,3 +56,19 @@ skriptVersions.forEach { version ->
         }
     }
 }
+
+subprojects {
+    apply<JavaPlugin>()
+
+    repositories {
+        mavenCentral()
+        maven("https://repo.roxymc.net/snapshots")
+        maven("https://repo.papermc.io/repository/maven-public/")
+    }
+
+    dependencies {
+        "compileOnly"("me.glicz:skanalyzer-core:2.0.0-SNAPSHOT") {
+            isTransitive = !project.name.startsWith("Skript")
+        }
+    }
+}
