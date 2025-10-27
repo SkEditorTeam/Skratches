@@ -1,13 +1,5 @@
 --- a/src/main/java/ch/njol/skript/aliases/ItemType.java
 +++ b/src/main/java/ch/njol/skript/aliases/ItemType.java
-@@ -68,6 +_,7 @@
- import java.util.Random;
- import java.util.RandomAccess;
- import java.util.Set;
-+import java.util.stream.Collectors;
- 
- @ContainerType(ItemStack.class)
- public class ItemType implements Unit, Iterable<ItemData>, Container<ItemStack>, YggdrasilExtendedSerializable {
 @@ -315,7 +_,7 @@
  
  	public boolean isOfType(Material id) {
@@ -50,7 +42,7 @@
 -		int numItems = types.size();
 +		List<ItemData> datas = types.stream()
 +				.filter(data -> data.stack != null)
-+				.collect(Collectors.toList());
++				.collect(java.util.stream.Collectors.toList());
 +		if (datas.isEmpty())
 +			return null;
 +		int numItems = datas.size();
