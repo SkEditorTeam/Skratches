@@ -21,8 +21,8 @@ import java.util.concurrent.CompletableFuture;
 import static me.glicz.skratches.util.ScriptUtils.listScripts;
 import static me.glicz.skratches.util.SetUtils.transformSet;
 
-@SuppressWarnings("UnstableApiUsage")
 public final class SkriptBridgeImpl implements SkriptBridge {
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public void forceLoadHooks(Config.ForcedHooks forcedHooks) throws IOException {
         if (forcedHooks.vault) {
