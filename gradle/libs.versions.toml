@@ -1,5 +1,5 @@
 [versions]
-accessWiden = "2.0.0"
+accessWiden = "2.1.0"
 eyepatch = "1.0.2"
 shadow = "9.2.0"
 skanalyzer = "2.0.0-SNAPSHOT"
