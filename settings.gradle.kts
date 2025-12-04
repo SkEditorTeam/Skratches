@@ -1,8 +1,19 @@
 import org.gradle.kotlin.dsl.provideDelegate
 
-rootProject.name = "Skratches"
+pluginManagement {
+    includeBuild("build-logic")
+}
 
-include("common")
+rootProject.name = "skratches-parent"
+
+fun include(path: String, action: ProjectDescriptor.() -> Unit) {
+    include(path)
+    project(path).action()
+}
+
+include(":skratches-common") {
+    projectDir = file("common")
+}
 
 gradle.extra["skriptVersions"] = listOf(
     "2.8", "2.9", "2.10", "2.11", "2.12", "2.13"

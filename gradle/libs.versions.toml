@@ -1,13 +1,12 @@
 [versions]
 accessWiden = "2.2.0"
 eyepatch = "1.0.2"
-shadow = "9.2.0"
 skanalyzer = "2.0.0-SNAPSHOT"
 
 [libraries]
 skanalyzer-core = { module = "me.glicz:skanalyzer-core", version.ref = "skanalyzer" }
 
+build-accessWiden = { module = "me.glicz.access-widen:me.glicz.access-widen.gradle.plugin", version.ref = "accessWiden" }
+
 [plugins]
-accessWiden = { id = "me.glicz.access-widen", version.ref = "accessWiden" }
 eyepatch = { id = "me.glicz.eyepatch", version.ref = "eyepatch" }
-shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
