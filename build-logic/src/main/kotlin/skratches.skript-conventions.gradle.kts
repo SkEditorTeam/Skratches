@@ -14,17 +14,13 @@ dependencies {
     accessWidened(accessWiden(tasks.jar))
 
     alsoShade(project(":skratches-common"))
-
-    compileOnly(libs.skanalyzer.core) {
-        exclude("io.papermc.paper", "paper-api")
-    }
 }
 
 accessWiden {
     accessWideners.from(rootDir.resolve("build-data/skript.accesswidener"))
 }
 
-tasks{
+tasks {
     register<Zip>("skratchedJar") {
         group = "skratches"
 
@@ -33,7 +29,7 @@ tasks{
         archiveClassifier = "skratched"
         archiveExtension = Jar.DEFAULT_EXTENSION
 
-        destinationDirectory = layout.buildDirectory.dir("libs")
+        destinationDirectory = base.libsDirectory
         setMetadataCharset(Charsets.UTF_8.name())
 
         fun configuration(configuration: Configuration) =

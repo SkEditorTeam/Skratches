@@ -4,7 +4,7 @@
  
  	@Override
  	public boolean postLoad() {
-+		if (!((me.glicz.skanalyzer.server.AnalyzerServer) Bukkit.getServer()).getAnalyzerConfig().allowAutoReload) return true;
++		if (true) return true;
  		task = new Task(Skript.getInstance(), 0, 20 * 2, true) {
  			@Override
  			public void run() {
