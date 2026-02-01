@@ -1,0 +1,13 @@
+--- a/src/main/java/ch/njol/skript/lang/SkriptParser.java
++++ b/src/main/java/ch/njol/skript/lang/SkriptParser.java
+@@ -271,6 +_,10 @@
+ 								break;
+ 						}
+ 						log.printLog();
++						try {
++							getParser().getCurrentScript().addons.add(JavaPlugin.getProvidingPlugin(info.type()).getName());
++						} catch (Throwable ignored) {
++						}
+ 						if (doSimplification && element instanceof Simplifiable<?> simplifiable) {
+ 							//noinspection unchecked
+ 							element = (T) simplify(simplifiable);

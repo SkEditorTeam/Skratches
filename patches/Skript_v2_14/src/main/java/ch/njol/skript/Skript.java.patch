@@ -1,0 +1,64 @@
+--- a/src/main/java/ch/njol/skript/Skript.java
++++ b/src/main/java/ch/njol/skript/Skript.java
+@@ -219,6 +_,8 @@
+ 	private SkriptUpdater updater;
+ 
+ 	public Skript() throws IllegalStateException {
++		if (!Bukkit.getName().equals("SkAnalyzer"))
++			throw new RuntimeException("You can only use skratched Skript for SkAnalyzer");
+ 		if (instance != null)
+ 			throw new IllegalStateException("Cannot create multiple instances of Skript!");
+ 		instance = this;
+@@ -416,6 +_,7 @@
+ 
+ 		// Start the updater
+ 		// Note: if config prohibits update checks, it will NOT do network connections
++		if (false)
+ 		try {
+ 			this.updater = new SkriptUpdater();
+ 		} catch (Exception e) {
+@@ -437,7 +_,6 @@
+ 				if (!scriptsFolder.isDirectory()) {
+ 					if (!scriptsFolder.mkdirs())
+ 						throw new IOException("Could not create the directory " + scriptsFolder);
+-					populateExamples = true;
+ 				}
+ 
+ 				boolean populateLanguageFiles = false;
+@@ -633,6 +_,7 @@
+ 				assert Bukkit.getWorlds().get(0).getFullTime() == tick;
+ 
+ 				// Load hooks from Skript jar
++				if (false)
+ 				try {
+ 					try (JarFile jar = new JarFile(getFile())) {
+ 						for (JarEntry e : new EnumerationIterable<>(jar.entries())) {
+@@ -681,6 +_,7 @@
+ 
+ 				stopAcceptingRegistrations();
+ 
++				if (false) {
+ 				Documentation.generate(); // TODO move to test classes?
+ 
+ 				// Variable loading
+@@ -799,6 +_,7 @@
+ 						}
+ 					});
+ 
++				}
+ 			}
+ 		});
+ 
+@@ -811,6 +_,12 @@
+ 
+ 		// Tell Timings that we are here!
+ 		SkriptTimings.setSkript(this);
++
++		try {
++			Class.forName("me.glicz.skratches.Skratches", true, getClassLoader());
++		} catch (ClassNotFoundException e) {
++			throw new RuntimeException("Failed to initialize Skratches", e);
++		}
+ 	}
+ 
+ 	private static class ServerReloadListener implements Listener {

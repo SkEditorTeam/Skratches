@@ -16,3 +16,6 @@
 [submodule "work/Skript_v2_13"]
 	path = work/Skript_v2_13
 	url = https://github.com/SkriptLang/Skript
+[submodule "work/Skript_v2_14"]
+	path = work/Skript_v2_14
+	url = https://github.com/SkriptLang/Skript
