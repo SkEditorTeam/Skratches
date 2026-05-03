@@ -8,11 +8,3 @@
  		task = new Task(Skript.getInstance(), 0, 20 * 2, true) {
  			@Override
  			public void run() {
-@@ -146,6 +_,7 @@
- 
- 	@Override
- 	public void unload() {
-+		if (task == null) return;
- 		task.cancel();
- 	}
- 
