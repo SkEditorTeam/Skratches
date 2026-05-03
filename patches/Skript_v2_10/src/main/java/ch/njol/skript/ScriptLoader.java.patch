@@ -10,14 +10,3 @@
  			return loadStructure(Files.newInputStream(file.toPath()), name);
  		} catch (IOException e) {
  			Skript.error("Could not load " + file.getName() + ": " + ExceptionUtils.toString(e));
-@@ -847,7 +_,10 @@
- 					.forEach(event -> event.onUnload(parser, script));
- 
- 			for (Structure structure : script.getStructures())
-+				try {
- 				structure.unload();
-+				} catch (Throwable ignored) {
-+				}
- 		}
- 
- 		parser.setInactive();
