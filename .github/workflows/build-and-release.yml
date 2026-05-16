@@ -1,4 +1,4 @@
-name: Build and Release Skratched Jars
+name: Build & Release
 
 on:
   push:
@@ -19,34 +19,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
+          distribution: 'coretto'
+          architecture: x64
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Disable Git Hooks
+      - name: Disable Git hooks
         run: git config --global core.hooksPath /dev/null
 
-      - name: Apply Patches
+      - name: Apply Skratches
         run: ./gradlew applyAllPatches
 
-      - name: Build Skratched Jars
+      - name: Build Skratched jars
         run: ./gradlew skratchedJar
 
-      - name: Create Release and Upload Jars
-        uses: softprops/action-gh-release@v2
+      - name: Create release and upload jars
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: build-${{ github.run_number }}
-          name: "Skratched Build #${{ github.run_number }}"
+          name: "Skratches Build #${{ github.run_number }}"
           body: "Automated build generated from commit: ${{ github.sha }}"
-          draft: false
-          prerelease: false
           files: |
             Skript_v*/build/libs/*-skratched.jar
