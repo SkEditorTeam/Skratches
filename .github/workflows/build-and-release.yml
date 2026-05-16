@@ -31,6 +31,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Disable Git Hooks
+        run: git config --global core.hooksPath /dev/null
+
       - name: Apply Patches
         run: ./gradlew applyAllPatches
 
