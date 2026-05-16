@@ -47,6 +47,6 @@ jobs:
           name: "Skratched Build #${{ github.run_number }}"
           body: "Automated build generated from commit: ${{ github.sha }}"
           draft: false
-          prerelease: true
+          prerelease: false
           files: |
             Skript_v*/build/libs/*-skratched.jar
