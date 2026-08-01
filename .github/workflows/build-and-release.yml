@@ -35,11 +35,6 @@ jobs:
       - name: Prepare EyePatch repositories
         run: |
           git submodule update --init --recursive --force
-          mkdir -p work
-          for repository in upstream/Skript_v*; do
-            target="work/$(basename "$repository")"
-            [ -d "$target/.git" ] || git clone "$repository" "$target"
-          done
 
       - name: Apply Skratches
         run: ./gradlew applyAllPatches
