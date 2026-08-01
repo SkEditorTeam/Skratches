@@ -1,24 +1,24 @@
-[submodule "work/Skript_v2_8"]
-	path = work/Skript_v2_8
+[submodule "upstream/Skript_v2_8"]
+	path = upstream/Skript_v2_8
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_9"]
-	path = work/Skript_v2_9
+[submodule "upstream/Skript_v2_9"]
+	path = upstream/Skript_v2_9
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_10"]
-	path = work/Skript_v2_10
+[submodule "upstream/Skript_v2_10"]
+	path = upstream/Skript_v2_10
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_11"]
-	path = work/Skript_v2_11
+[submodule "upstream/Skript_v2_11"]
+	path = upstream/Skript_v2_11
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_12"]
-	path = work/Skript_v2_12
+[submodule "upstream/Skript_v2_12"]
+	path = upstream/Skript_v2_12
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_13"]
-	path = work/Skript_v2_13
+[submodule "upstream/Skript_v2_13"]
+	path = upstream/Skript_v2_13
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_14"]
-	path = work/Skript_v2_14
+[submodule "upstream/Skript_v2_14"]
+	path = upstream/Skript_v2_14
 	url = https://github.com/SkriptLang/Skript
-[submodule "work/Skript_v2_15"]
-	path = work/Skript_v2_15
+[submodule "upstream/Skript_v2_15"]
+	path = upstream/Skript_v2_15
 	url = https://github.com/SkriptLang/Skript/

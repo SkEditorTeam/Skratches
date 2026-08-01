@@ -118,4 +118,4 @@ run/
 !gradle-wrapper.jar
 
 # Patched repositories
-/Skript_*/
+work/

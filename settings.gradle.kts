@@ -22,9 +22,11 @@ gradle.extra["skriptVersions"] = listOf(
 val skriptVersions: List<String> by gradle.extra
 
 skriptVersions.forEach { version ->
-    val path = "Skript_v${version.replace('.', '_')}"
+    val name = "Skript_v${version.replace('.', '_')}"
 
-    if (file(path).exists()) {
-        include(":$path")
+    file("work/$name").takeIf(File::exists)?.also { path ->
+        include(":$name") {
+            projectDir = path
+        }
     }
 }

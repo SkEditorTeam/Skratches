@@ -25,7 +25,8 @@ skriptVersions.forEach { version ->
     val name = "Skript_v${version.replace('.', '_')}"
 
     eyepatch.repositories.create(name) {
-        submodule = "work/$name"
+        submodule = "upstream/$name"
+        target = file("work/$name")
         ignoredPrefixes = setOf("build/", "skript-aliases/")
     }
 
