@@ -7,8 +7,14 @@ plugins {
 
 val libs = rootProject.the<LibrariesForLibs>()
 
-val accessWidened: Configuration by configurations.creating
-val alsoShade: Configuration by configurations.creating
+val accessWidened = configurations.create("accessWidened")
+val alsoShade = configurations.create("alsoShade") {
+    isCanBeConsumed = false
+
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named<Usage>(Usage.JAVA_API))
+    }
+}
 
 dependencies {
     accessWidened(accessWiden(tasks.jar))
