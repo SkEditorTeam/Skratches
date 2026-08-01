@@ -35,6 +35,9 @@ jobs:
       - name: Apply Skratches
         run: ./gradlew applyAllPatches
 
+      - name: Verify Skript compatibility
+        run: ./gradlew :skratches-common:compileJava_Skript_all
+
       - name: Build Skratched jars
         run: ./gradlew skratchedJar
 

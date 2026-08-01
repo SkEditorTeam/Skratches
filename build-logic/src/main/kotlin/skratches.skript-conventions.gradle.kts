@@ -1,7 +1,7 @@
 import org.gradle.accessors.dm.LibrariesForLibs
 
 plugins {
-    java
+    id("skratches.common-conventions")
     id("me.glicz.access-widen")
 }
 
@@ -23,6 +23,7 @@ accessWiden {
 tasks {
     register<Zip>("skratchedJar") {
         group = "skratches"
+        description = "Same as jar, but skratched!"
 
         archiveBaseName = "Skript"
         archiveVersion = project.name.split('_', limit = 2)[1].replace('_', '.')
@@ -43,13 +44,7 @@ tasks {
         duplicatesStrategy = DuplicatesStrategy.FAIL
     }
 
-    withType<JavaCompile> {
-        options.isFork = true
+    withType<JavaCompile>().configureEach {
         options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal"))
-    }
-
-    withType<AbstractArchiveTask>().configureEach {
-        isPreserveFileTimestamps = false
-        isReproducibleFileOrder = true
     }
 }
