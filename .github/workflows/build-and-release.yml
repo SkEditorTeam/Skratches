@@ -45,4 +45,4 @@ jobs:
           name: "Skratches Build #${{ github.run_number }}"
           body: "Automated build generated from commit: ${{ github.sha }}"
           files: |
-            Skript_v*/build/libs/*-skratched.jar
+            work/Skript_v*/build/libs/*-skratched.jar
