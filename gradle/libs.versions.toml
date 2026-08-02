@@ -1,6 +1,7 @@
 [versions]
 accessWiden = "3.0.0"
 eyepatch = "1.0.3"
+shadow = "9.6.1"
 skanalyzer = "2.0.0-SNAPSHOT"
 
 [libraries]
@@ -10,3 +11,4 @@ build-accessWiden = { module = "me.glicz.access-widen:me.glicz.access-widen.grad
 
 [plugins]
 eyepatch = { id = "me.glicz.eyepatch", version.ref = "eyepatch" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

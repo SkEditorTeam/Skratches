@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.eyepatch)
+    alias(libs.plugins.shadow) apply false
     id("skratches.skript-conventions") apply false
 }
 
@@ -12,7 +13,7 @@ subprojects {
 
     afterEvaluate {
         // Some older Skript versions still use deprecated Sonatype snapshot URLs,
-        // which breaks the build. It's easier to just remove them like this and minimize the diff.
+        // which breaks the build. It's easier to just remove them like that and minimize the diff.
         repositories.removeIf {
             it is MavenArtifactRepository && it.url.toString().contains("oss.sonatype.org")
         }

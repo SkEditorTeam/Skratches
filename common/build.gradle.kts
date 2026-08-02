@@ -18,6 +18,7 @@ tasks {
     withType<JavaCompile>().configureEach {
         options.encoding = Charsets.UTF_8.name()
         options.release = 21
+        options.compilerArgs.add("-Xlint:deprecation")
     }
 }
 
@@ -38,9 +39,11 @@ skriptVersions.forEach { version ->
 
         source = sourceSets.main.get().java
 
-        classpath = configurations.detachedConfiguration(
-            dependencies.project(skript.path, "accessWidened")
-        ).apply {
+        classpath = configurations.create(name) {
+            isCanBeConsumed = false
+
+            dependencies.add(project.dependencies.project(skript.path, "accessWidened"))
+
             extendsFrom(configurations.implementation.get())
         }
 

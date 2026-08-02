@@ -1,0 +1,20 @@
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,7 +_,7 @@
+ import java.time.LocalTime
+ 
+ plugins {
+-	id 'com.github.johnrengelman.shadow' version '8.1.1'
++	id 'com.gradleup.shadow'
+ 	id 'maven-publish'
+ 	id 'java'
+ 	id 'checkstyle'
+@@ -217,7 +_,7 @@
+ 			project.configurations.runtimeClasspath.find { it.name.startsWith('gson') },
+ 			sourceSets.main.runtimeClasspath
+ 		])
+-		main = 'ch.njol.skript.test.platform.PlatformMain'
++		mainClass = 'ch.njol.skript.test.platform.PlatformMain'
+ 		args = [
+ 			'build/test_runners',
+ 			junit ? 'src/test/skript/junit' : 'src/test/skript/tests',

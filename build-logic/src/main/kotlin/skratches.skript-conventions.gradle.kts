@@ -51,6 +51,6 @@ tasks {
     }
 
     withType<JavaCompile>().configureEach {
-        options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal"))
+        options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal", "-Xlint:-dep-ann"))
     }
 }
