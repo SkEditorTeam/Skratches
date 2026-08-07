@@ -1,6 +1,6 @@
 [versions]
 accessWiden = "3.0.0"
-eyepatch = "1.0.3"
+eyepatch = "1.1.0"
 shadow = "9.6.1"
 skanalyzer = "2.0.0-SNAPSHOT"
 
