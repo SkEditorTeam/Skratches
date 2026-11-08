@@ -20,7 +20,8 @@ subprojects {
     }
 }
 
-val skriptVersions: List<String> by gradle.extra
+@Suppress("UNCHECKED_CAST")
+val skriptVersions = gradle.extra["skriptVersions"] as List<String>
 
 skriptVersions.forEach { version ->
     val name = "Skript_v${version.replace('.', '_')}"
@@ -31,5 +32,7 @@ skriptVersions.forEach { version ->
         ignoredPrefixes = setOf("build/", "skript-aliases/")
     }
 
-    findProject(":$name")?.apply(plugin = "skratches.skript-conventions")
+    findProject(":$name")?.apply {
+        plugin("skratches.skript-conventions")
+    }
 }

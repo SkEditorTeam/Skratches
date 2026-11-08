@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.provideDelegate
-
 pluginManagement {
     includeBuild("build-logic")
 }
@@ -15,11 +13,11 @@ include(":skratches-common") {
     projectDir = file("common")
 }
 
-gradle.extra["skriptVersions"] = listOf(
+val skriptVersions = listOf(
     "2.8", "2.9", "2.10", "2.11", "2.12", "2.13", "2.14", "2.15", "2.16"
 )
 
-val skriptVersions: List<String> by gradle.extra
+gradle.extra["skriptVersions"] = skriptVersions
 
 skriptVersions.forEach { version ->
     val name = "Skript_v${version.replace('.', '_')}"
