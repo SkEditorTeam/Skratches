@@ -25,7 +25,7 @@
  				}
  
  				boolean populateLanguageFiles = false;
-@@ -589,6 +_,7 @@
+@@ -588,6 +_,7 @@
  				assert Bukkit.getWorlds().get(0).getFullTime() == tick;
  
  				// Load hooks from Skript jar
@@ -33,7 +33,7 @@
  				try {
  					try (JarFile jar = new JarFile(getFile())) {
  						for (JarEntry e : new EnumerationIterable<>(jar.entries())) {
-@@ -637,6 +_,7 @@
+@@ -630,6 +_,7 @@
  
  				stopAcceptingRegistrations();
  
@@ -41,7 +41,7 @@
  				Documentation.generate(); // TODO move to test classes?
  
  				// Variable loading
-@@ -755,6 +_,7 @@
+@@ -748,6 +_,7 @@
  						}
  					});
  
@@ -49,7 +49,7 @@
  			}
  		});
  
-@@ -767,6 +_,12 @@
+@@ -760,6 +_,12 @@
  
  		// Tell Timings that we are here!
  		SkriptTimings.setSkript(this);
