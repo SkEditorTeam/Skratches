@@ -25,3 +25,6 @@
 [submodule "upstream/Skript_v2_16"]
 	path = upstream/Skript_v2_16
 	url = https://github.com/SkriptLang/Skript
+[submodule "upstream/Skript_v2_17"]
+	path = upstream/Skript_v2_17
+	url = https://github.com/SkriptLang/Skript

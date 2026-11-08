@@ -1,0 +1,11 @@
+--- a/build.gradle
++++ b/build.gradle
+@@ -4,7 +_,7 @@
+ import java.time.LocalTime
+ 
+ plugins {
+-	id 'com.gradleup.shadow' version '9.6.1'
++	id 'com.gradleup.shadow'
+ 	id 'maven-publish'
+ 	id 'java'
+ 	id 'checkstyle'

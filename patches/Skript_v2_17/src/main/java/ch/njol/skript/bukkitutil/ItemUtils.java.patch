@@ -1,0 +1,14 @@
+--- a/src/main/java/ch/njol/skript/bukkitutil/ItemUtils.java
++++ b/src/main/java/ch/njol/skript/bukkitutil/ItemUtils.java
+@@ -53,9 +_,9 @@
+ 		// use the same one as the stack to be safe (likely needed for obtaining correct item meta)
+ 		data = itemStack.getType().getKey() + data;
+ 		try {
+-			ItemStack parsed = ArgumentTypes.itemStack().parse(new StringReader(data));
++			ItemStack parsed = Bukkit.getItemFactory().createItemStack(data);
+ 			itemStack.setItemMeta(parsed.getItemMeta());
+-		} catch (CommandSyntaxException e) {
++		} catch (IllegalArgumentException e) {
+ 			throw Skript.exception(e, "Failed to apply component data to ItemStack");
+ 		}
+ 	}

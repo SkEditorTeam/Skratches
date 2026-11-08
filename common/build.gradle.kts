@@ -18,7 +18,6 @@ tasks {
     withType<JavaCompile>().configureEach {
         options.encoding = Charsets.UTF_8.name()
         options.release = 25
-        options.compilerArgs.add("-Xlint:deprecation")
     }
 }
 
@@ -27,7 +26,8 @@ val compileJavaSkriptAll = tasks.register("compileJava_Skript_all") {
     description = "Compiles main Java sources against all Skript versions"
 }
 
-val skriptVersions: List<String> by gradle.extra
+@Suppress("UNCHECKED_CAST")
+val skriptVersions = gradle.extra["skriptVersions"] as List<String>
 
 skriptVersions.forEach { version ->
     val name = "Skript_v${version.replace('.', '_')}"

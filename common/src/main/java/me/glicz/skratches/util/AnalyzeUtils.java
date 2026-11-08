@@ -91,8 +91,9 @@ public final class AnalyzeUtils {
             }
         });
 
-        //noinspection UnstableApiUsage
+        @SuppressWarnings("UnstableApiUsage")
         StructOptions.OptionsData optionsData = script.getData(StructOptions.OptionsData.class);
+
         if (optionsData != null) {
             options.putAll(optionsData.getOptions());
         }
@@ -134,7 +135,7 @@ public final class AnalyzeUtils {
         Map<String, String> parameters = stream(signature.getParameters()).collect(toMap(
                 Parameter::getName,
                 parameter -> parameter.getType().getCodeName(),
-                (left, right) -> left,
+                (left, _) -> left,
                 LinkedHashMap::new
         ));
 

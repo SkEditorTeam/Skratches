@@ -49,8 +49,4 @@ tasks {
 
         duplicatesStrategy = DuplicatesStrategy.FAIL
     }
-
-    withType<JavaCompile>().configureEach {
-        options.compilerArgs.addAll(listOf("-Xlint:-deprecation", "-Xlint:-removal", "-Xlint:-dep-ann"))
-    }
 }
